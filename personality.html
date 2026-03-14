@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Personality Test</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#ff7b00,#ff00d4,#00eaff);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+h1{
+font-size:40px;
+}
+
+.question{
+margin-top:40px;
+}
+
+button{
+margin-top:30px;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+}
+
+#result{
+margin-top:40px;
+font-size:26px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>What Kind of Mind Do You Have? 🧠</h1>
+
+<div class="question">
+
+<p>1. What sounds most exciting?</p>
+
+<label><input type="radio" name="q1" value="innovator"> Building something new</label><br>
+<label><input type="radio" name="q1" value="creator"> Designing something beautiful</label><br>
+<label><input type="radio" name="q1" value="strategist"> Solving a complex puzzle</label><br>
+<label><input type="radio" name="q1" value="explorer"> Traveling somewhere unknown</label>
+
+</div>
+
+<div class="question">
+
+<p>2. Your friends describe you as:</p>
+
+<label><input type="radio" name="q2" value="innovator"> Curious</label><br>
+<label><input type="radio" name="q2" value="creator"> Artistic</label><br>
+<label><input type="radio" name="q2" value="strategist"> Logical</label><br>
+<label><input type="radio" name="q2" value="explorer"> Adventurous</label>
+
+</div>
+
+<div class="question">
+
+<p>3. Your ideal activity:</p>
+
+<label><input type="radio" name="q3" value="innovator"> Starting a new project</label><br>
+<label><input type="radio" name="q3" value="creator"> Painting or creating</label><br>
+<label><input type="radio" name="q3" value="strategist"> Playing strategy games</label><br>
+<label><input type="radio" name="q3" value="explorer"> Hiking or discovering places</label>
+
+</div>
+
+<button onclick="calculate()">See My Personality</button>
+
+<div id="result"></div>
+
+<script>
+
+function calculate(){
+
+let answers = document.querySelectorAll("input[type=radio]:checked")
+
+if(answers.length < 3){
+alert("Please answer all questions")
+return
+}
+
+let scores={
+innovator:0,
+creator:0,
+strategist:0,
+explorer:0
+}
+
+answers.forEach(a=>{
+scores[a.value]++
+})
+
+let maxType = Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b)
+
+let resultText=""
+
+if(maxType=="innovator"){
+resultText="🚀 You are an INNOVATOR — you love building new ideas."
+}
+
+if(maxType=="creator"){
+resultText="🎨 You are a CREATOR — you bring beauty and imagination."
+}
+
+if(maxType=="strategist"){
+resultText="🧠 You are a STRATEGIST — logic and planning are your strengths."
+}
+
+if(maxType=="explorer"){
+resultText="🌍 You are an EXPLORER — curiosity drives you."
+}
+
+document.getElementById("result").innerHTML=resultText
+
+}
+
+</script>
+
+</body>
+
+</html>
